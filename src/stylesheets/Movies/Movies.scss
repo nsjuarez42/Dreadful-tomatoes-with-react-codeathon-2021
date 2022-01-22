@@ -1,0 +1,29 @@
+
+.movies{
+    display:grid;
+    grid-template-columns: repeat(6,20%);
+    grid-template-rows: repeat(2,40%);
+}
+
+.first-column{
+    display:flex;
+    grid-row: 1;
+    margin-bottom: 100%;
+}
+
+.second-column{
+    display:flex;
+    grid-row:2;
+}
+
+.card figcaption{
+ position:absolute;
+ color:red;
+ text-align:center;
+ top:90%;
+ left:0;
+}
+
+.card figure{
+    position:relative;
+}
