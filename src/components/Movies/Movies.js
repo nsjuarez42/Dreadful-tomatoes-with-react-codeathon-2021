@@ -37,7 +37,8 @@ function filterMovies(movies){
 }
 
 function Movies(){
-  const filteredMovies = filterMovies(JSONData.entries.filter(el=>el.programType == "movie"))
+  const moviesData = JSONData.entries.filter(el=>el.programType =='movie')
+  const filteredMovies = filterMovies(moviesData)
 
   const [movies,setMovies] = useState(filteredMovies)
   const [currentPage,setCurrentPage] = useState(0)
@@ -54,6 +55,12 @@ function Movies(){
     const onClickSetPage=(e)=>{
         setCurrentPage(e.target.value)
       }
+    const onSubmitSearch= (e)=>{
+    e.preventDefault()
+     const search = e.target[0].value
+     search == '' ? setMovies(filteredMovies) :
+     setMovies([moviesData.filter(el=>RegExp(search,'gi').test(el.title))])
+    }
 
       const Buttons = movies.map((el,index)=>{
         return(<button onClick={onClickSetPage} value={index}>{index + 1}</button>)
@@ -86,7 +93,7 @@ function Movies(){
 
     return(<div>
         <Header/>
-        <SearchBar/>
+        <SearchBar onSubmit={onSubmitSearch}/>
       <div className="movies">
          <div className="first-column">
           {firstSeriesColumn}
